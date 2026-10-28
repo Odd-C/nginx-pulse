@@ -1,0 +1,11 @@
+services:
+  nginx-pulse:
+    build: .
+    container_name: nginx-pulse
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./backend/data:/app/backend/data
+      # 将宿主机 Nginx 日志目录只读挂载到容器内
+      - /var/log/nginx:/var/log/nginx:ro
+    restart: unless-stopped

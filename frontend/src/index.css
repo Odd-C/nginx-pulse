@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --scrollbar-thumb: #334155;
+    --scrollbar-track: #0b0f17;
+  }
+
+  body {
+    background-color: #0b0f17;
+    color: #f1f5f9;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+}
+
+.scroller {
+  --scrollbar-thumb: #334155;
+  --scrollbar-track: #0b0f17;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+/* Legacy fallback for WebKit/Blink browsers */
+@supports not (scrollbar-color: auto) {
+  .scroller::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scroller::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+  }
+
+  .scroller::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle telemetry grid backdrop */
+.bg-telemetry-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 41, 59, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.28) 1px, transparent 1px);
+}
+
+/* Native modal dialog backdrop */
+dialog::backdrop {
+  background-color: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+/* Responsive table container and sticky headers */
+.table-wrapper {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(640px, 75vh);
+  container-type: inline-size;
+}
+
+.telemetry-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  --label-2: "状态码";
+  --label-3: "方法与路径";
+  --label-4: "归属地与终端";
+  --label-5: "流量";
+  --label-6: "耗时";
+  --label-7: "来源";
+}
+
+.telemetry-table thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+}
+
+.telemetry-table tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  background: #0f172a;
+  z-index: 1;
+}
+
+@container (width < 600px) {
+  .telemetry-table,
+  .telemetry-table thead,
+  .telemetry-table tbody,
+  .telemetry-table tr,
+  .telemetry-table th,
+  .telemetry-table td {
+    display: block;
+  }
+
+  .telemetry-table thead {
+    display: none;
+  }
+
+  .telemetry-table tr {
+    margin-block-end: 0.75rem;
+    border: 1px solid #1e293b;
+  }
+
+  .telemetry-table tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    background: #1e293b;
+  }
+
+  .telemetry-table td:nth-child(2)::before {
+    content: var(--label-2) ": ";
+    color: #94a3b8;
+  }
+  .telemetry-table td:nth-child(3)::before {
+    content: var(--label-3) ": ";
+    color: #94a3b8;
+  }
+  .telemetry-table td:nth-child(4)::before {
+    content: var(--label-4) ": ";
+    color: #94a3b8;
+  }
+  .telemetry-table td:nth-child(5)::before {
+    content: var(--label-5) ": ";
+    color: #94a3b8;
+  }
+  .telemetry-table td:nth-child(6)::before {
+    content: var(--label-6) ": ";
+    color: #94a3b8;
+  }
+  .telemetry-table td:nth-child(7)::before {
+    content: var(--label-7) ": ";
+    color: #94a3b8;
+  }
+}

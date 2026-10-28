@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# SQLite & Runtime Logs
+backend/data/*.db
+backend/data/*.db-shm
+backend/data/*.db-wal
+backend/data/*.log
+backend/data/*.gz
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+*.local
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
